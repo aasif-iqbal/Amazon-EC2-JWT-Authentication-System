@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 
     try{
         await mongoose.connect(connection_url);
-        console.log('connection established');
+        console.log('MongoDb compass connection established');
     }catch(error){
         console.log(error);
     }
