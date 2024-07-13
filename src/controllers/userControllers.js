@@ -43,13 +43,16 @@ const loginUser = async (req, res) => {
 
                 // Set the token in an HTTP-Only cookie
                 res.cookie('token', token, {
-                    httpOnly: true,                    
+                    httpOnly: true,
+                                        
                 });
 
-                res.json({ 
-                    user,
-                    token
-                 });
+                // res.json({ 
+                //     user,
+                //     token
+                // });
+                
+                res.redirect('login/dashboard');
 
             console.log('Password matches!');
             } else {
@@ -58,7 +61,7 @@ const loginUser = async (req, res) => {
         }else{
             return res.json({
                 msg:'User Not Found!'
-            })
+            });
         }
     } catch (error) {
         console.log(error);            

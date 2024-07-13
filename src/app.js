@@ -6,7 +6,7 @@ import { connectDb } from './config_atlas.js';
 import userRoute from "./routes/users.js";
 import bodyParser from "body-parser";
 import { authenticateUser } from "./middleware/auth.js";
-// import cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser";
 
 // Get the current file's URL and convert it to a file path
 const __filename = fileURLToPath(import.meta.url);
@@ -16,7 +16,7 @@ let app = express();
 connectDb();
 
 //cookie parser
-// app.use(cookieParser);
+app.use(cookieParser());
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
