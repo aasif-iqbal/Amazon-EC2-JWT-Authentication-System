@@ -38,7 +38,7 @@ const loginUser = async (req, res) => {
                     username:user[0].username
                 }
 
-                const token = await jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'72h'});
+                const token = await jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn:process.env.EXPIRES_IN});
 
 
                 // Set the token in an HTTP-Only cookie
@@ -48,9 +48,7 @@ const loginUser = async (req, res) => {
                     // Ensures the cookie is sent over HTTPS only
                     secure: true,               
                     // Controls how cookies are sent with cross-site requests (options: 'strict', 'lax', 'none')
-                    sameSite: 'strict',         
-                    // Sets the cookie to expire in 24 hours
-                    maxAge: 24 * 60 * 60 * 1000 
+                    sameSite: 'strict',                    
                 });
 
                 // res.json({ 
