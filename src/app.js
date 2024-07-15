@@ -26,15 +26,18 @@ app.use(bodyParser.json());
 // app.use('/', userRoute);
 app.use(userRoute);
 
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Set the views directory and engine
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 
 
-app.get('/signIn',(req, res)=>{
+app.get('/registration',(req, res)=>{
     // res.send('Hello');
-    res.render('login/signin');
+    res.render('login/registration');
 })
 
 app.get('/login',(req, res)=>{
@@ -46,7 +49,7 @@ app.get('/login',(req, res)=>{
 
 app.get('/dashboard', authenticateUser, (req, res) => {
     
-    res.render('login/dashboard');
+    res.render('/dashboard');
 });
 
 

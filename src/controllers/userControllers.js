@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const saltRounds = 10;
 
-const signInUser = async (req, res) => {
+const registration = async (req, res) => {
     
     const { username, email, password } = req.body;
 
@@ -43,19 +43,24 @@ const loginUser = async (req, res) => {
 
                 // Set the token in an HTTP-Only cookie
                 res.cookie('token', token, {
-                    httpOnly: true,
-                                        
+                    // Prevents client-side JavaScript from accessing the cookie
+                    httpOnly: true,             
+                    // Ensures the cookie is sent over HTTPS only
+                    secure: true,               
+                    // Controls how cookies are sent with cross-site requests (options: 'strict', 'lax', 'none')
+                    sameSite: 'strict',         
+                    // Sets the cookie to expire in 24 hours
+                    maxAge: 24 * 60 * 60 * 1000 
                 });
 
                 // res.json({ 
                 //     user,
                 //     token
                 // });
-                
-                res.redirect('login/dashboard');
-
+                res.redirect('/dashboard');
             console.log('Password matches!');
             } else {
+                res.redirect('/login');
             console.log('Password does not match!');
             }
         }else{
@@ -70,6 +75,6 @@ const loginUser = async (req, res) => {
 
 
 export {
-    signInUser,
+    registration,
     loginUser
 }

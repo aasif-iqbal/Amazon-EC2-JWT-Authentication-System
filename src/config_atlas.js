@@ -17,12 +17,10 @@ import mongoose from "mongoose";
         password: aasif%4012345 (aasif@12345)
         database name: Auth-JWT-Nodejs
 
-
         database / browse collections
 */ 
 
-
-    const connection_url = "mongodb+srv://aasifgithub:aasif%4012345@ec2-node-cluster.wzb71gt.mongodb.net/Auth-JWT-Nodejs?retryWrites=true&w=majority&appName=EC2-Node-Cluster";
+    const connection_url = process.env.MONGODB_CONNECTION_URL;
 
     try{
         await mongoose.connect(connection_url);
@@ -30,7 +28,6 @@ import mongoose from "mongoose";
     }catch(error){
         console.log(error);
     }
-
 }
 
 export {
