@@ -81,6 +81,23 @@ pm2 logs
 -- our mongodb is not connected ---
 export MONGODB_CONNECTION_URL=url_strings
 
+pm2 stop all
+pm2 logs
+
+Server is running on PORT::3000
+
+Now we have to create 
+
+GO security (in same instance)
+To create an inbound rule
+How to create inbound rule for your port number
+https://docs.aws.amazon.com/finspace/latest/userguide/step5-config-inbound-rule.html#:~:text=Open%20the%20Amazon%20EC2%20console,tab%2C%20choose%20Edit%20inbound%20rules.
+
+Edit inbound rule
+- add custom tcp - tcp - 3000  0.0.0.0/0 (Anywere IPv4)
+- add custom tcp - tcp - 3000  ::/0 (Anywere IPv4)
+- save
+
 # rsync
 rsync -avz --exclude 'node_modules' --exclude '.git' --exclude '.env' \
 -e "ssh -i ~/.ssh/your-key.pem" \
