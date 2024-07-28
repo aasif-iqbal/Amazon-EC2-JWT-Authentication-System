@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import 'dotenv/config';
 import { fileURLToPath } from 'url';
-import { connectDb } from './config_atlas.js';
+import { connectDb } from './config_atlas.js'; // connect with Mongodb - atlas
 import userRoute from "./routes/users.js";
 import bodyParser from "body-parser";
 import { authenticateUser } from "./middleware/auth.js";
@@ -49,7 +49,7 @@ app.get('/login',(req, res)=>{
 
 app.get('/dashboard', authenticateUser, (req, res) => {
     
-    res.render('/dashboard');
+    res.render('login/dashboard');
 });
 
 

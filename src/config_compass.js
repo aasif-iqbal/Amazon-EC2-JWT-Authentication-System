@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
- const connectDb = async () => {
+const connectDb = async () => {
 
     const connection_url = 'mongodb://localhost:27017/Jwt-auth-db';
 
