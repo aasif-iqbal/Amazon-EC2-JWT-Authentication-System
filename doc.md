@@ -68,7 +68,18 @@ sudo apt install nodejs
 node -v
 
 clone project
+- git clone https://github.com/aasif-iqbal/Amazon-EC2-JWT-Authentication-System.git
+- cd Amazon-EC2-JWT-Authentication-System
+- npm install
 
+cd..
+sudo npm i -g pm2
+cd Amazon-EC2-JWT-Authentication-System
+pm2 start src/app.js
+pm2 logs
+
+-- our mongodb is not connected ---
+export MONGODB_CONNECTION_URL=url_strings
 
 # rsync
 rsync -avz --exclude 'node_modules' --exclude '.git' --exclude '.env' \

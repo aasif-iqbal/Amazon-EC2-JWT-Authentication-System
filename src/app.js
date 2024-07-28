@@ -54,6 +54,6 @@ app.get('/dashboard', authenticateUser, (req, res) => {
 
 
 
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT || 3000, ()=>{
     console.log(`server is running on PORT::${process.env.PORT}`);
 });
