@@ -98,11 +98,38 @@ Edit inbound rule
 - add custom tcp - tcp - 3000  ::/0 (Anywere IPv4)
 - save
 
-# rsync
-rsync -avz --exclude 'node_modules' --exclude '.git' --exclude '.env' \
--e "ssh -i ~/.ssh/your-key.pem" \
-. ubuntu@ip-address:~/app
+Setup Firewall
+---
+--
 
+Install nginx and config
+sudo apt install nginx
+cd ..
+cd ..
+cd ..
 
+sudo nano /etc/nginx/sites-available/default
+
+using nginx as a proxy server - that means - request first comes to nginx then it redirect to our nodejs server.
+
+``````js
+server {
+    listen 80;
+
+    server_name your-domain.com; # Replace with your domain or public IP
+
+    location / {
+        proxy_pass http://localhost:3000; # Replace with the backend server's address
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+``````
+
+https://gist.github.com/piyushgarg-dev/8b14c87c8ff4d626ecbc747b6b9fc57f
+ 
 //OR https://www.youtube.com/watch?v=ofBFl4M4BFk
 https://www.youtube.com/watch?v=ofBFl4M4BFk&t=462s
